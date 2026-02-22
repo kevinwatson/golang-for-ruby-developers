@@ -14,15 +14,35 @@ Golang for Ruby Developers
    1. What is Ruby on Rails?
    1. Will it make my job easier?
    1. Will it make my customers happy?
-1. Chapter 3 - Models, Views, Controllers
+1. Chapter 3 - Models, Views, Controllers (MVC)
+   1. Models
+   1. Views
+   1. Controllers
+   1. Comparing Languages
 1. Chapter 4 - Object Relational Mapping (ORMs)
+   1. Introduction
+   1. Comparing Languages
 1. Chapter 5 - Console
+   1. Introduction
+   1. Comparing Languages
 1. Chapter 6 - Debugging
+   1. Introduction
+   1. Comparing Languages
 1. Chapter 7 - Logging
+   1. Introduction
+   1. Comparing Languages
 1. Chapter 8 - Tasks
+   1. Introduction
+   1. Comparing Languages
 1. Chapter 9 - Code Generators
+   1. Introduction
+   1. Comparing Languages
 1. Chapter 10 - Database Migrations
-1. Chapter 11 - 
+   1. Introduction
+   1. Comparing Languages
+1. Chapter 11 - Performance Testing
+   1. Introduction
+   1. Comparing Languages
 
 
 - Data structures
