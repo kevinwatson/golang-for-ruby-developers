@@ -37,53 +37,48 @@ Golang for Ruby Developers
    1. Comparing Languages
    1. Example
    1. References
-1. Chapter 7 - Logging
+1. Chapter 7 - Unit testing
    1. Introduction
    1. Comparing Languages
    1. Example
    1. References
-1. Chapter 8 - Tasks
+1. Chapter 8 - Logging
    1. Introduction
    1. Comparing Languages
    1. Example
    1. References
-1. Chapter 9 - Code Generators
+1. Chapter 9 - Tasks
    1. Introduction
    1. Comparing Languages
    1. Example
    1. References
-1. Chapter 10 - Database Migrations
+1. Chapter 10 - Code Generators
    1. Introduction
    1. Comparing Languages
    1. Example
    1. References
-1. Chapter 11 - Performance Testing
+1. Chapter 11 - Database Migrations
    1. Introduction
    1. Comparing Languages
    1. Example
    1. References
-1. Chapter 12 - Data structures
+1. Chapter 12 - Performance Testing
    1. Introduction
    1. Comparing Languages
    1. Example
    1. References
-1. Chapter 13 - Concurrency
+1. Chapter 13 - Language Comparison
    1. Introduction
-   1. Comparing Languages
-   1. Example
-   1. References
-1. Chapter 14 - Loops
-   1. Introduction
-   1. Comparing Languages
-   1. Example
-   1. References
-1. Chapter 16 - Control Expressions
-   1. Introduction
-   1. Comparing Languages
-   1. Example
+   1. Data structures
+   1. Concurrency
+   1. Loops
+   1. Control Expressions
    1. References
 
 Links
 - https://guides.rubyonrails.org
 - https://docs.ruby-lang.org/en/2.4.0/syntax/control_expressions_rdoc.html
+
+Titles
+- How to build a fast Rails app without Rails
 
