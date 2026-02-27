@@ -1,6 +1,6 @@
 ### TABLE OF CONTENTS
 
-* [Chapter 1 - Golang](020-chapter-0*md)
+* [Chapter 1 - Golang](020-chapter-01.md)
    * Introduction
    * Will it make my job easier?
    * Will it make my customers happy?
