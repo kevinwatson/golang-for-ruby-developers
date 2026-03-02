@@ -13,7 +13,7 @@ Will it make my job easier? This is a question which needs some context to answe
 
 ## Will it make my customers happy?
 
-Let's define a customer. In the context of this guide, we'll define a customer as anyone who uses your software to perform their job or provide a service for their customers. I currently work in the FinTech space, so my team's software processes and serves financial data to users who access it through a website or mobile device. Reducing latency between the time the user logs into their mobile app and their financial data is displayed on the screen, the better.
+Let's define a customer. In the context of this guide, we'll define a customer as anyone who uses your software to perform their job or provide a service to their customers. I currently work in the FinTech space, so my team's software processes and serves financial data to users who access it through a website or mobile device. Reducing latency between the time the user logs into their mobile app and their financial data is displayed on the screen, the better.
 
 ## References
 

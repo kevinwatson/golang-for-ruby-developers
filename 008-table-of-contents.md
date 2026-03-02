@@ -6,7 +6,7 @@
    * Will it make my customers happy?
    * References
    * Wrap Up
-* [Chapter 2 Ruby on Rails](030-chapter-02.md)
+* [Chapter 2 - Ruby on Rails](030-chapter-02.md)
    * Introduction
    * Will it make my job easier?
    * Will it make my customers happy?
