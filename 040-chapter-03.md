@@ -14,14 +14,23 @@ Most Ruby on Rails applications are designed to interact with a database. The mo
 
 ## Views
 
+Views are the presentation layer. They convert the data into something that the user can consume, such as html in a browser. Along with the html that the user downloads and interacts with, the view layer can contain other assets like images and JavaScript.
+
 ## Controllers
 
+Controllers act as the intermediary between models and views. They're responsible for responding to a user's request to view, update or delete a resource. They can also check whether the user is authorized to access or modify a particular resource.
+
 ## Comparing Languages
+
+The Ruby language, by itself, was not web friendly. Along came the Ruby on Rails framework. Convention over configuration. Software patterns like MVC. A developer, using the Ruby on Rails framework, is productive and can create a full-featured web app in a minimal amount of time.
+
+The Go language, by itself, provides tooling that will allow you to start a simple http server. If you want to write a full-featured MVC app in Go, you can. Import a few packages to provide the functionality you need such as an ORM and view rendering, and you'll be on your way to building a web app that's performant and easy to maintain.
 
 ## Example
 
 ## References
 
+* https://www.calhoun.io/using-mvc-to-structure-go-web-applications
 
 ## Wrap Up
 
