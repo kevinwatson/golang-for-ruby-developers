@@ -18,7 +18,6 @@
    * Views
    * Controllers
    * Comparing Languages
-   * Example
    * References
    * Wrap Up
 * [Chapter 4 - Object Relational Mapping (ORMs)](050-chapter-04.md)

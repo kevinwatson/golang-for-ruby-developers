@@ -26,13 +26,15 @@ The Ruby language, by itself, was not web friendly. Along came the Ruby on Rails
 
 The Go language, by itself, provides tooling that will allow you to start a simple http server. If you want to write a full-featured MVC app in Go, you can. Import a few packages to provide the functionality you need such as an ORM and view rendering, and you'll be on your way to building a web app that's performant and easy to maintain.
 
-## Example
-
 ## References
 
+* https://guides.rubyonrails.org
 * https://www.calhoun.io/using-mvc-to-structure-go-web-applications
 
 ## Wrap Up
 
+MVC is a software pattern that organizes the code in a project to separate concerns. The Ruby on Rails framework is designed around this pattern. Go provides a number of built-in packages that, with a little bit of work, can provide some of the same functionality.
+
+If your goal is developer productivity, Ruby on Rails provides features that make it easy to get up and running. If your platform grows and later you need performance, Go can provide those optimizations.
 
 [Next >>](050-chapter-04.md)
