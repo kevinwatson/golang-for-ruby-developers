@@ -97,3 +97,8 @@ Links
 Titles
 - How to build a fast Rails app without Rails
 
+Goals
+- Rewrite an entire ruby on rails app in go
+- Compare ruby and go code that has the same inputs and outputs
+- Write a multi-tier application with RoR for the front end and Go in the backend
+
