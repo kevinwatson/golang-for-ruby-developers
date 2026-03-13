@@ -28,7 +28,83 @@ Go has a few ORMs available. One of the most popular ORMs is GORM. GORM provides
 * Functions such as `Create`, `Update`, `Delete` and `Find`
 * Callbacks which can run before committing a record
 
-## Example
+## Examples
+
+I know most of my readers are software engineers and would prefer to look at some code. Let's look at some examples and compare ActiveRecord and GORM to perform the same operation of finding and updating a record from a database. Let's assume two apps are accessing the same table in the same database.
+
+#### Table Defintion
+
+```sql
+CREATE TABLE users (
+  id serial,
+  name text
+)
+```
+
+### Ruby
+
+#### Model Definition
+
+```ruby
+class User < ApplicationRecord
+end
+```
+
+#### ActiveRecord Query Interface
+
+Find the record
+
+```ruby
+# create the user
+user = User.create(name: "John")
+
+# find the user
+user = User.find_by(id: user.id)
+
+# update the user
+user.name = "Ronald"
+user.save
+```
+
+### Go
+
+#### Model Definition
+
+Using Generics
+
+```golang
+package main
+
+import (
+  "context"
+  [additional imports]
+  "gorm.io/gorm"
+)
+
+type User struct {
+  gorm.Model
+  Id int
+  Name string
+}
+
+func main() {
+  db, err := [connect to the db]
+  ctx := context.Background()
+
+  // define the user
+  user := User{Name: "John"})
+
+  // create the user
+  result := gorm.WithResult()
+  err = gorm.G[User](db, result).Create(ctx, &user)
+  id := user.Id
+
+  // find the user
+  user, err := gorm.G[User](db).Where("id = ?", id).First(ctx)
+
+  // update the user
+  err = gorm.G[User](db).Where("id = ?", id).Update(ctx, "name", "Ronald")
+```
 
 ## References
 
