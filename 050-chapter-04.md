@@ -104,6 +104,7 @@ func main() {
 
   // update the user
   err = gorm.G[User](db).Where("id = ?", id).Update(ctx, "name", "Ronald")
+}
 ```
 
 ## References
