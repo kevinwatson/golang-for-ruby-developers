@@ -98,6 +98,7 @@ func main() {
   result := gorm.WithResult()
   err = gorm.G[User](db, result).Create(ctx, &user)
   id := user.Id
+  err = result.Error
 
   // find the user
   user, err := gorm.G[User](db).Where("id = ?", id).First(ctx)
