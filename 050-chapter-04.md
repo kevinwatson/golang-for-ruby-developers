@@ -63,8 +63,6 @@ end
 
 #### ActiveRecord Query Interface
 
-Find the record
-
 ```ruby
 # create the user
 user = User.create(name: "John")
@@ -82,8 +80,6 @@ user.destroy
 
 ### Go
 
-#### Model Definition
-
 GORM supports a couple of language options. This example will use Go generics.
 
 ```golang
@@ -95,6 +91,7 @@ import (
   "gorm.io/gorm"
 )
 
+// define the User
 type User struct {
   gorm.Model
   Id int
