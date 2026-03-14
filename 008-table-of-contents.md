@@ -20,16 +20,28 @@
    * Comparing Languages
    * References
    * Wrap Up
-* [Chapter 4 - Models - Object Relational Mapping (ORM)](050-chapter-04.md)
+* [Chapter 4 - Models](050-chapter-04.md)
    * Introduction
    * Comparing Languages
-   * Example
+   * Examples
    * References
    * Wrap Up
-* [Chapter 5 - Console](060-chapter-05.md)
+* [Chapter 5 - Views](060-chapter-05.md)
    * Introduction
    * Comparing Languages
-   * Example
+   * Examples
+   * References
+   * Wrap Up
+* [Chapter 6 - Controllers](070-chapter-06.md)
+   * Introduction
+   * Comparing Languages
+   * Examples
+   * References
+   * Wrap Up
+* [Chapter 7 - Console](080-chapter-07.md)
+   * Introduction
+   * Comparing Languages
+   * Examples
    * References
    * Wrap Up
 * [Chapter 6 - Debugging](070-chapter-06.md)
