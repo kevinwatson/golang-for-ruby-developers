@@ -131,3 +131,6 @@ func main() {
 ## Wrap Up
 
 ORMs provide an easy way to write native code to manipulate data in your database. The Ruby ActiveRecord query interface provides helper methods such as `save` and `update` on ApplicationRecord objects which makes the code you write very simple. Go's GORM library requires function chaining to provide the same effect, but the result is the same: readable code that retrieves and manipulates data stored outside of your program.
+
+[Next >>](060-chapter-05.md)
+
