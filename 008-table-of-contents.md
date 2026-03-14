@@ -38,7 +38,7 @@
    * Example
    * References
    * Wrap Up
-* [Chapter 7 - Unit testing](080-chapter-07.md)
+* [Chapter 7 - Unit Testing](080-chapter-07.md)
    * Introduction
    * Comparing Languages
    * Example
