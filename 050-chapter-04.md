@@ -124,6 +124,7 @@ func main() {
 
 ## References
 
+* https://go.dev/doc/tutorial/generics
 * https://gorm.io/docs
 * https://guides.rubyonrails.org/active_record_basics.html
 
