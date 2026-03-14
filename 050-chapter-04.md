@@ -1,4 +1,4 @@
-### Chapter 4 - Object Relational Mapping (ORMs)
+### Chapter 4 - Models - Object Relational Mapping (ORM)
 
 > 
 
@@ -26,13 +26,13 @@ Go has a few ORMs available. One of the most popular ORMs is GORM. GORM provides
 * Association support for related one-to-one, one-to-many and many-to-many relationships
 * Database change support (aka migrations)
 * Functions such as `Create`, `Update`, `Delete` and `Find`
-* Callbacks which can run before committing a record
+* Callbacks which run before committing a record
 
 ## Examples
 
 I know most of my readers are software engineers and would prefer to look at some code. Let's look at some examples and compare ActiveRecord and GORM to perform the same operation of finding and updating a record from a database. Let's assume two apps are accessing the same table in the same database.
 
-#### Table Defintion
+#### Table Definition
 
 ```sql
 CREATE TABLE users (
@@ -40,6 +40,17 @@ CREATE TABLE users (
   name text
 )
 ```
+
+#### Expected DML
+
+Here's the expected SQL data manipulation language (DML) that each language and framework should generate.
+
+|Command|Statement|
+|---|---|
+|Insert|`INSERT INTO users (name) VALUES ('John')`|
+|Select|`SELECT * FROM users WHERE id = $1`|
+|Update|`UPDATE users SET name = 'Ronald' WHERE id = $1`|
+|Delete|`DELETE FROM users WHERE id = $1`|
 
 ### Ruby
 
@@ -64,13 +75,16 @@ user = User.find_by(id: user.id)
 # update the user
 user.name = "Ronald"
 user.save
+
+# delete the user
+user.destroy
 ```
 
 ### Go
 
 #### Model Definition
 
-Using Generics
+GORM supports a couple of language options. This example will use Go generics.
 
 ```golang
 package main
@@ -105,6 +119,9 @@ func main() {
 
   // update the user
   err = gorm.G[User](db).Where("id = ?", id).Update(ctx, "name", "Ronald")
+
+  // delete the user
+  err = gorm.G[User](db).Where("id = ?", id).Delete(ctx)
 }
 ```
 
@@ -115,3 +132,4 @@ func main() {
 
 ## Wrap Up
 
+ORMs provide an easy way to write native code to manipulate data in your database. The Ruby ActiveRecord query interface provides helper methods such as `save` and `update` on ApplicationRecord objects which makes the code you write very simple. Go's GORM library requires function chaining to provide the same effect, but the result is the same: readable code that retrieves and manipulates data stored outside of your program.

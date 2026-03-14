@@ -20,7 +20,7 @@
    * Comparing Languages
    * References
    * Wrap Up
-* [Chapter 4 - Object Relational Mapping (ORMs)](050-chapter-04.md)
+* [Chapter 4 - Models - Object Relational Mapping (ORM)](050-chapter-04.md)
    * Introduction
    * Comparing Languages
    * Example
