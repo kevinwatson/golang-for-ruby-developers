@@ -14,9 +14,11 @@ Go is a compiled language, which makes running a REPL more difficult. While not 
 
 ### Ruby on Rails
 
-Let's build a Docker image to run out environment.
+Let's build a Docker image to run our environment.
 
 ```dockerfile
+# golang-for-ruby-developers/console/ruby/Dockerfile
+
 FROM ruby:4.0.1
 
 RUN apt-get update && apt-get install -qq -y --no-install-recommends \
@@ -32,7 +34,20 @@ RUN rails generate scaffold Employee guid:string first_name:string last_name:str
 RUN rails db:migrate
 ```
 
-Now, let's start the app with Docker Compose.
+Let's use a Docker Compose file to configure our environment.
+
+```yaml
+# golang-for-ruby-developers/console/ruby/docker-compose.yml
+
+services:
+  ruby:
+    build:
+      context: .
+    stdin_open: true
+    tty: true
+```
+
+Now, let's start the app from our terminal.
 
 ```bash
 docker-compose run ruby bash
