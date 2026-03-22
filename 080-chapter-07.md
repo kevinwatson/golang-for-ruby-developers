@@ -136,13 +136,19 @@ import (
 func main() {
     db := database.Connect()
 
-    var users []models.User
-    db.Where("active = ?", true).Find(&users)
+    var employees []models.Employee
+    db.Where("active = ?", true).Find(&employees)
 
-    for _, u := range users {
-        fmt.Printf("%+v\n", u)
+    for _, e := range employees {
+        fmt.Printf("%+v\n", e)
     }
 }
+```
+
+Run the script
+
+```bash
+go run scripts/query/main.go
 ```
 
 ## References
