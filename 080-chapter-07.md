@@ -8,7 +8,8 @@
 
 Rails console is a commonly used REPL (read eval print loop) feature. It builds on IRB which is a built in Ruby tool for running code in an interactive shell environment. With the dynamic nature of Ruby, you can create new classes or access existing classes and call methods on those classes and objects. In the shell, you also have access to the rest of the environment that's available at runtime, so you can access resources to help you test out ideas while in development or access databases in a test or production environment.
 
-Go is a compiled language, which makes running a REPL more difficult. While not a built-in feature, that hasn't stopped the Go community from building their own. With a few limitations, the third party gomacro and yaegi projects work similar to Rails console.
+Go is a compiled language, which makes running a REPL more difficult. While not a built-in feature, that hasn't stopped the Go community from building their own. With a few limitations, the third party gomacro and yaegi projects work similar to Rails console. The difficulty in replicating a dynamic language's features into a compiled language's features will lead us to creating separate solutions, depending on our needs. Some of these needs may include a playground in our development environment to test out our ideas, while others may include the need to retrieve data from our database using structures already written into our app.
+
 
 ## Examples
 
@@ -87,22 +88,70 @@ console-app(dev):003> Employee.first
 
 ### Go
 
-#### Gomacro
+#### Interactive Console
 
-```bash
-gomacro
+Yaegi provides an interactive mode where the stdlib packages are imported and can be used as a playground for testing out ideas. Let's use Docker to set up an environment and run some code.
+
+Import the Yaegi package
+
+```dockerfile
+# Dockerfile
+FROM golang:1.25
+
+RUN go install github.com/traefik/yaegi/cmd/yaegi@latest
+
+CMD ["yaegi"]
 ```
 
+Build and run the container
+
+```bash
+docker build -t console . && docker run --rm -it console yaegi
+```
+
+Run some Go code
+
 ```go
+> import "fmt"
+: 0x40000340f0
+> fmt.Println("Hello")
+Hello
+: 6
+```
+
+#### Retrieving Data in a Test Environment
+
+While Ruby on Rail's console provides full access to your app's models, Go requires additional work, such as writing a script that needs to compile before it can be run. This is similar to writing a rake task in RoR rather than typing or copy and pasting a script into RoR's console.
+
+```go
+// scripts/query/main.go
+package main
+
+import (
+    "fmt"
+    "your-app/models"
+    "your-app/database"
+)
+
+func main() {
+    db := database.Connect()
+
+    var users []models.User
+    db.Where("active = ?", true).Find(&users)
+
+    for _, u := range users {
+        fmt.Printf("%+v\n", u)
+    }
+}
 ```
 
 ## References
 
-* https://github.com/cosmos72/gomacro
 * https://github.com/traefik/yaegi
 * https://guides.rubyonrails.org/command_line.html#bin-rails-console
 
 ## Wrap Up
 
+As we can see, Ruby on Rails provides an easy method to run your app interactively, providing full access to the models and thus the data stored in the database. Go by nature doesn't have a similar built in tool, but, depending on our needs, has options to test ideas or retrieve data from our database.
 
 [Next >>](090-chapter-08.md)
