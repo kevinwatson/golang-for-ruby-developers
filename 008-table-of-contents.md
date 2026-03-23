@@ -40,50 +40,42 @@
    * Wrap Up
 * [Chapter 7 - Console](080-chapter-07.md)
    * Introduction
-   * Comparing Languages
    * Examples
    * References
    * Wrap Up
 * [Chapter 8 - Debugging](090-chapter-08.md)
    * Introduction
-   * Comparing Languages
-   * Example
+   * Examples
    * References
    * Wrap Up
 * [Chapter 9 - Unit Testing](100-chapter-09.md)
    * Introduction
-   * Comparing Languages
-   * Example
+   * Examples
    * References
    * Wrap Up
 * [Chapter 10 - Logging](110-chapter-10.md)
    * Introduction
-   * Comparing Languages
-   * Example
+   * Examples
    * References
    * Wrap Up
 * [Chapter 11 - Tasks](120-chapter-11.md)
    * Introduction
-   * Comparing Languages
-   * Example
+   * Examples
    * References
    * Wrap Up
 * [Chapter 12 - Code Generators](130-chapter-12.md)
    * Introduction
-   * Comparing Languages
-   * Example
+   * Examples
    * References
    * Wrap Up
 * [Chapter 13 - Database Migrations](140-chapter-13.md)
    * Introduction
-   * Comparing Languages
-   * Example
+   * Examples
    * References
    * Wrap Up
 * [Chapter 14 - Performance Testing](150-chapter-14.md)
    * Introduction
-   * Comparing Languages
-   * Example
+   * Examples
    * References
    * Wrap Up
 * [Chapter 15 - Language Comparison](160-chapter-15.md)
