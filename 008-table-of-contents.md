@@ -44,49 +44,49 @@
    * Examples
    * References
    * Wrap Up
-* [Chapter 6 - Debugging](070-chapter-06.md)
+* [Chapter 8 - Debugging](090-chapter-08.md)
    * Introduction
    * Comparing Languages
    * Example
    * References
    * Wrap Up
-* [Chapter 7 - Unit Testing](080-chapter-07.md)
+* [Chapter 9 - Unit Testing](100-chapter-09.md)
    * Introduction
    * Comparing Languages
    * Example
    * References
    * Wrap Up
-* [Chapter 8 - Logging](090-chapter-08.md)
+* [Chapter 10 - Logging](110-chapter-10.md)
    * Introduction
    * Comparing Languages
    * Example
    * References
    * Wrap Up
-* [Chapter 9 - Tasks](100-chapter-09.md)
+* [Chapter 11 - Tasks](120-chapter-11.md)
    * Introduction
    * Comparing Languages
    * Example
    * References
    * Wrap Up
-* [Chapter 10 - Code Generators](110-chapter-10.md)
+* [Chapter 12 - Code Generators](130-chapter-12.md)
    * Introduction
    * Comparing Languages
    * Example
    * References
    * Wrap Up
-* [Chapter 11 - Database Migrations](120-chapter-11.md)
+* [Chapter 13 - Database Migrations](140-chapter-13.md)
    * Introduction
    * Comparing Languages
    * Example
    * References
    * Wrap Up
-* [Chapter 12 - Performance Testing](130-chapter-12.md)
+* [Chapter 14 - Performance Testing](150-chapter-14.md)
    * Introduction
    * Comparing Languages
    * Example
    * References
    * Wrap Up
-* [Chapter 13 - Language Comparison](140-chapter-13.md)
+* [Chapter 15 - Language Comparison](160-chapter-15.md)
    * Introduction
    * Data structures
    * Concurrency
