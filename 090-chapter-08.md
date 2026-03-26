@@ -104,7 +104,7 @@ Switching back to your terminal, you should see that it paused on the `debugger`
   # and 78 frames (use `bt' command for all frames)
 (ruby) @employees
 []
-(rdbg) p headers    # command
+(rdbg) p headers    # print the headers
 => {"x-frame-options" => "SAMEORIGIN", "x-xss-protection" => "0", "x-content-type-options" => "nosniff", "x-permitted-cross-domain-policies" => "none", "referrer-policy" => "strict-origin-when-cross-origin"}
 ```
 
@@ -113,6 +113,116 @@ When you're finished, type `quit` and then `y` to exit the debugging session.
 ### Go
 
 Let's set up our environment and use `GDB` to debug our code.
+
+First, we'll use a Docker image.
+
+```dockerfile
+# golang-for-ruby-developers/debugger/go/Dockerfile
+
+FROM golang:1.25
+
+WORKDIR /opt/app
+RUN go mod init example.com/employees
+COPY employees.go ./
+RUN go get ./...
+```
+
+Next, we'll use a Docker Compose file to configure our environment.
+
+```yaml
+# golang-for-ruby-developers/debugger/go/docker-compose.yml
+
+services:
+  go:
+    build:
+      context: .
+    stdin_open: true
+    tty: true
+```
+
+And we'll need some code.
+
+```golang
+# golang-for-ruby-developers/debugger/go/employees.go
+
+package main
+
+import (
+  "context"
+  "encoding/json"
+  "fmt"
+  "gorm.io/driver/sqlite"
+  "gorm.io/gorm"
+  "log"
+  "net/http"
+)
+
+type Employee struct {
+  gorm.Model
+  guid      string
+  firstName string
+  lastName  string
+}
+
+func employeeIndexHandler(w http.ResponseWriter, req *http.Request) {
+  //list the employees
+
+  db, err := gorm.Open(sqlite.Open("employees.db"), &gorm.Config{})
+  if err != nil {
+    log.Fatal("Could not connect to database employees.db: ", err)
+  }
+
+  ctx := context.Background()
+
+  records, err := gorm.G[Employee](db).Find(ctx)
+  if err != nil {
+    fmt.Printf("Could not connect to database %s\n", err)
+  }
+
+  js, err := json.Marshal(records)
+  if err != nil {
+    http.Error(w, err.Error(), http.StatusInternalServerError)
+    return
+  }
+
+  w.Header().Set("Content-Type", "application/json")
+  w.Write(js)
+}
+
+func main() {
+  db, err := gorm.Open(sqlite.Open("employees.db"), &gorm.Config{})
+  if err != nil {
+    log.Fatal("Could not connect to database employees.db: ", err)
+  }
+
+  db.AutoMigrate(&Employee{})
+
+  http.HandleFunc("/employees", employeeIndexHandler)
+  fmt.Println("Server starting on port 8080")
+  err = http.ListenAndServe(":8080", nil)
+  if err != nil {
+    log.Fatal("Server exited with error: ", err)
+  }
+}
+```
+
+Now let's run the code.
+
+```bash
+docker-compose build
+docker-compose docker-compose run -p 8080:8080 go bash
+```
+
+Now that we're logged into the container, let's run the http server in debug mode.
+
+```bash
+use delve or gdb?
+```
+
+Now let's make an http request to our server from our browser.
+
+http://localhost:8080/employees
+
 
 ## References
 
