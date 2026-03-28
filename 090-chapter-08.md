@@ -64,7 +64,7 @@ end
 After saving and closing the `employees_controller.rb` file, let's run a command to start the Rails app.
 
 ```bash
-# bundle exec puma -C config/puma.rb
+bundle exec puma -C config/puma.rb
 ```
 
 We should see output like the following in our terminal.
@@ -209,8 +209,7 @@ func main() {
 Now let's run the code.
 
 ```bash
-docker-compose build
-docker-compose docker-compose run go bash
+docker-compose run go bash
 ```
 
 Now that we're logged into the container, let's run the app in debug mode. We'll start the app with `dlv debug` which will start the app in debug mode. We can then set a breakpoint, step through the code and inspect our variables. The `example.com/employees` is the package name we used in the Dockerfile above.
