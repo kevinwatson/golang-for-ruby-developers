@@ -210,27 +210,83 @@ Now let's run the code.
 
 ```bash
 docker-compose build
-docker-compose docker-compose run -p 8080:8080 go bash
+docker-compose docker-compose run go bash
 ```
 
-Now that we're logged into the container, let's run the http server in debug mode.
+Now that we're logged into the container, let's run the app in debug mode. We'll start the app with `dlv debug` which will start the app in debug mode. We can then set a breakpoint, step through the code and inspect our variables. The `example.com/employees` is the package name we used in the Dockerfile above.
 
-```bash
-use delve or gdb?
+```golang
+dlv debug example.com/employees
+Type 'help' for list of commands.
+
+(dlv) break main.main
+Breakpoint 1 set at 0x938c20 for main.main() ./employees.go:45
+(dlv) continue
+> [Breakpoint 1] main.main() ./employees.go:45 (hits goroutine(1):1 total:1) (PC: 0x938c20)
+    40:
+    41:	  w.Header().Set("Content-Type", "application/json")
+    42:	  w.Write(js)
+    43:	}
+    44:
+=>  45:	func main() {
+    46:	  db, err := gorm.Open(sqlite.Open("employees.db"), &gorm.Config{})
+    47:	  if err != nil {
+    48:	    log.Fatal("Could not connect to database employees.db: ", err)
+    49:	  }
+    50:
+
+(dlv) next
+> main.main() ./employees.go:46 (PC: 0x938c30)
+    41:	  w.Header().Set("Content-Type", "application/json")
+    42:	  w.Write(js)
+    43:	}
+    44:
+    45:	func main() {
+=>  46:	  db, err := gorm.Open(sqlite.Open("employees.db"), &gorm.Config{})
+    47:	  if err != nil {
+    48:	    log.Fatal("Could not connect to database employees.db: ", err)
+    49:	  }
+    50:
+    51:	  db.AutoMigrate(&Employee{})
+
+(dlv) next
+> main.main() ./employees.go:47 (PC: 0x938d78)
+    42:	  w.Write(js)
+    43:	}
+    44:
+    45:	func main() {
+    46:	  db, err := gorm.Open(sqlite.Open("employees.db"), &gorm.Config{})
+=>  47:	  if err != nil {
+    48:	    log.Fatal("Could not connect to database employees.db: ", err)
+    49:	  }
+    50:
+    51:	  db.AutoMigrate(&Employee{})
+    52:
+
+(dlv) print err
+error nil
+
+(dlv) print db
+Sending output to pager...
+("*gorm.io/gorm.DB")(0x400022ade0)
+*gorm.io/gorm.DB {
+	Config: *gorm.io/gorm.Config {
+		SkipDefaultTransaction: false,
+		DefaultTransactionTimeout: 0,
+		DefaultContextTimeout: 0,
+...
+
+(dlv) exit
 ```
-
-Now let's make an http request to our server from our browser.
-
-http://localhost:8080/employees
-
 
 ## References
 
-* https://go.dev/doc/gdb
+* https://github.com/go-delve/delve/tree/master/Documentation/cli
 * https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
 
 ## Wrap Up
 
+In this chapter we've demonstrated how to start an app with a debugger enabled. While stepping through the code, we can inspect variables and monitor the state of our app to squash any bugs. In the next chapter, we'll dive into comparing unit testing between languages.
 
 [Next >>](100-chapter-09.md)
 
