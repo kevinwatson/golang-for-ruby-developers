@@ -112,7 +112,7 @@ When you're finished, type `quit` and then `y` to exit the debugging session.
 
 ### Go
 
-Let's set up our environment and use `GDB` to debug our code.
+Let's set up our environment and use the [delve](https://github.com/go-delve/delve) package to debug our code.
 
 First, we'll use a Docker image.
 
