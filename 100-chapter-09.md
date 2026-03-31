@@ -54,46 +54,49 @@ Now let's start the container and log in.
 docker-compose run ruby bash
 ```
 
-Let's add a validation to require the three fields we added to the employee model. We'll then write a unit test for our model. We've added vim to the docker image but feel free to include your editor of choice.
+Let's test the index action of the employees controller. We've added vim to the docker image but feel free to include your editor of choice. First, we'll inspect the `index` action of the `employees_controller.rb` file.
 
 ```ruby
-# app/models/employee.rb
+# cat app/controllers/employees_controller.rb
 
-class Employee < ApplicationRecord
-  validates :guid, presence: true
-end
-```
+class EmployeesController < ApplicationController
+  before_action :set_employee, only: %i[ show edit update destroy ]
 
-After editing and saving the employee.rb file, now let's add a unit test.
-
-```ruby
-# spec/models/employee_spec.rb
-
-require 'rails_helper'
-
-RSpec.describe Employee, type: :model do
-  subject(:employee) { described_class.new(guid: nil) }
-  before { employee.valid? }
-
-  describe 'validations' do
-    it 'requires a guid' do
-      expect(employee.errors[:guid]).to be_present
-    end
+  # GET /employees or /employees.json
+  def index
+    @employees = Employee.all
   end
+...
 end
 ```
 
-After editing and saving the `employee_spec.rb` file, let's run the test.
+Everything is as expected. Because we added RSpec to the project and used a Rails generator to create an Employee, RSpec has already created unit tests for our controller in the `spec/requests` directory. Here we'll comment out the `skip("Add a hash of attributes valid for your model")` line and add a line with some key value pairs.
+
+```ruby
+# spec/requests/employees_spec.rb
+
+let(:valid_attributes) {
+  #skip("Add a hash of attributes valid for your model")
+  { guid: "abcdef123", first_name: "John", last_name: "Ronald" }
+}
+```
+
+After editing and saving the `employees_spec.rb` file, let's run the test. We'll use the `--format documentation` flag to show the names of all of the tests that are run.
 
 ```bash
-rspec spec/models/
-.
+rspec --format documentation spec/requests/employees_spec.rb
 
-Finished in 0.01174 seconds (files took 0.72054 seconds to load)
-1 example, 0 failures
+/employees
+  GET /index
+    renders a successful response
+
+...
+
+Finished in 0.08735 seconds (files took 0.69872 seconds to load)
+13 examples, 0 failures, 5 pending
 ```
 
-We can see from the results that one test passed and zero tests failed. If we were to remove the `validates :guid, presence: true` line from the `employee.rb` class at a later time, our tests would fail, indicating that our past assumptions are now incorrect.
+We can see from the results that there were 13 tests in the test run, zero tests failed and 5 were in a pending state. If we were to remove the `index` route from the `employees_controller.rb` class or change what objects were returned at a later time, our tests would fail, indicating that our past assumptions are now incorrect.
 
 ### Go
 
