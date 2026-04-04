@@ -45,6 +45,7 @@ This would result in the following line in our log file:
 
 ```
 W, [2026-05-07T11:00:00.000000] WARN -- : The method 'pay_all_bonuses' is deprecated and will be removed in the next version
+```
 
 ### Go
 
