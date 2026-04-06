@@ -60,13 +60,119 @@ Each time we need to run the report, it will save us time because we no longer n
 
 ### Go
 
+In chapter 7 (the 'Console' chapter), we discussed the need to create a file for our code because Go is a compiled language. This is fitting for this chapter on Rake tasks, because the script that we want to reuse can be captured as a 'task' for our future use. For example, we can create a `tasks` folder in our project and add script that we'll use there.
+
+Let's recreate the Ruby logic above in Go. We'll import the `models` package and insert a record to generate data for our report.
+
+Our Dockerfile
+
+```dockerfile
+# Dockerfile
+FROM golang:1.25
+
+WORKDIR /opt/app
+RUN go mod init example.com/my-app
+COPY . .
+RUN go get ./...
+```
+
+Our Docker Compose file
+
+```yaml
+# docker-compose.yml
+
+docker-compose.yml
+services:
+  go:
+    build:
+      context: .
+    stdin_open: true
+    tty: true
+```
+
+Our employee model (in the `models` directory)
+
+```golang
+// models/employee.go
+
+package models
+
+import (
+  "gorm.io/gorm"
+)
+
+type Employee struct {
+  gorm.Model
+  Id        int
+  Guid      string
+  FirstName string
+  LastName  string
+}
+```
+
+Our print task (in the `tasks/employee_report` directory)
+
+```golang
+// tasks/employee_report/print.go
+
+package main
+
+import (
+    "context"
+    "example.com/my-app/models"
+    "fmt"
+    "log"
+    "gorm.io/driver/sqlite"
+    "gorm.io/gorm"
+)
+
+func main() {
+    db, err := gorm.Open(sqlite.Open("employees.db"), &gorm.Config{})
+    if err != nil {
+      log.Fatal("Could not connect to database employees.db: ", err)
+    }
+
+    ctx := context.Background()
+
+    db.AutoMigrate(&models.Employee{})
+
+    err = gorm.G[models.Employee](db).Create(ctx, &models.Employee{Guid: "abcd", FirstName: "George", LastName: "Jetson"})
+
+    records, err := gorm.G[models.Employee](db).Find(ctx)
+    if err != nil {
+      fmt.Printf("Could not connect to database %s\n", err)
+    }
+
+    fmt.Println("id,guid,first_name,last_name")
+    for _, e := range records {
+        fmt.Printf("%d,%s,%s,%s\n", e.Id, e.Guid, e.FirstName, e.LastName)
+    }
+}
+```
+
+We can run the task with this command:
+
+```bash
+docker-compose run go
+go run tasks/employee_report/print.go
+```
+
+To produce this output
+
+```
+id,guid,first_name,last_name
+1,abcd,George,Jetson
+```
 
 ## References
 
 * https://en.wikipedia.org/wiki/Make_(software)
+* https://gorm.io/docs
 * https://guides.rubyonrails.org/command_line.html#custom-rake-tasks
 
 ## Wrap Up
+
+No matter which language your app is written in, writing tasks that encapsulate some bit of repetitive logic can save you and your team time down the road. Capturing this logic and being able to run it from the command line also gives you the ability to run it on a timer (for example in a cron job). Writing a task in Go is similar to writing a task in Ruby, you can access the models and other code as needed to 'accomplish' your task.
 
 [Next >>](130-chapter-12.md)
 
