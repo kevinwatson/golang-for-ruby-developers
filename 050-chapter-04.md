@@ -82,7 +82,7 @@ user.destroy
 
 ### Go
 
-GORM supports a couple of language options. This example will use Go generics.
+GORM supports a couple of language options. This example uses Go generics.
 
 ```golang
 package main
