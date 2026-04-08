@@ -1,0 +1,8 @@
+services:
+  go:
+    build:
+      context: .
+      dockerfile: Dockerfile.old
+    stdin_open: true
+    tty: true
+

@@ -1,0 +1,92 @@
+# syntax=docker/dockerfile:1
+FROM golang:1.25
+
+WORKDIR /app
+
+ENV GOPATH=/root/go:/app
+ENV PATH=$PATH:/root/go/bin
+
+RUN go mod init gorm_interp_demo
+
+RUN cat > main.go <<'GOEOF'
+package main
+
+import (
+	"fmt"
+	"go/build"
+	"os"
+	"reflect"
+
+	"github.com/traefik/yaegi/interp"
+	"github.com/traefik/yaegi/stdlib"
+	gormDriver "gorm.io/driver/sqlite"
+	gormLib "gorm.io/gorm"
+)
+
+const gormScript = `
+import (
+	"fmt"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
+)
+
+type Product struct {
+	ID    uint
+	Name  string
+	Price float64
+}
+
+func main() {
+	db, err := gorm.Open(sqlite.Open("demo.db"), &gorm.Config{})
+	if err != nil {
+		panic("failed to connect to database: " + err.Error())
+	}
+
+	if err := db.AutoMigrate(&Product{}); err != nil {
+		panic("auto-migrate failed: " + err.Error())
+	}
+
+	db.Create(&Product{Name: "Widget", Price: 9.99})
+
+	var p Product
+	db.First(&p, 1)
+	fmt.Printf("Product: ID=%d Name=%s Price=%.2f\n", p.ID, p.Name, p.Price)
+}
+`
+
+var Symbols = map[string]map[string]reflect.Value{
+	"gorm.io/gorm": {
+		"Open":   reflect.ValueOf(gormLib.Open),
+		"Config": reflect.ValueOf(reflect.TypeOf(gormLib.Config{})),
+	},
+	"gorm.io/driver/sqlite": {
+		"Open": reflect.ValueOf(gormDriver.Open),
+	},
+}
+
+func main() {
+	i := interp.New(interp.Options{
+		GoPath: build.Default.GOPATH,
+		Env:    os.Environ(),
+	})
+	i.Use(stdlib.Symbols)
+	i.Use(Symbols)
+
+	if _, err := i.Eval(gormScript); err != nil {
+		fmt.Printf("Interpreter error: %v\n", err)
+	}
+}
+GOEOF
+
+RUN go get github.com/traefik/yaegi/interp \
+           github.com/traefik/yaegi/stdlib \
+           gorm.io/gorm \
+           gorm.io/driver/sqlite
+
+RUN go mod download
+RUN go mod tidy
+RUN go build -o gorm_interp_demo .
+RUN go install github.com/traefik/yaegi/cmd/yaegi@latest
+
+CMD ["/bin/bash"]
+

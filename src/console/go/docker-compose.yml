@@ -1,0 +1,10 @@
+services:
+  go:
+    build:
+      context: .
+      dockerfile: Dockerfile.claude
+    volumes:
+    - .:/usr/src/app
+    stdin_open: true
+    tty: true
+
