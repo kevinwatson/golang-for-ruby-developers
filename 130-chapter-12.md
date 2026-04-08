@@ -49,7 +49,7 @@ bin/rails generate scaffold benefit name:string benefit_type:integer activated_a
       create      app/views/benefits/_benefit.json.jbuilder
 ```
 
-We can then customize the files to finish our new feature.
+We can then customize the files to complete our new feature.
 
 ### Go
 
