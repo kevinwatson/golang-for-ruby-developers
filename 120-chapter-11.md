@@ -110,7 +110,7 @@ type Employee struct {
 }
 ```
 
-Our print task (in the `tasks/employee_report` directory)
+Our employee print task (in the `tasks/employee_report` directory). Note that because we want to run this file on its own, we named the package `main` and the only function in the package is the `main` function.
 
 ```golang
 // tasks/employee_report/print.go
@@ -134,8 +134,10 @@ func main() {
 
     ctx := context.Background()
 
+    // create the table
     db.AutoMigrate(&models.Employee{})
 
+    // create a demo record
     err = gorm.G[models.Employee](db).Create(ctx, &models.Employee{Guid: "abcd", FirstName: "George", LastName: "Jetson"})
 
     records, err := gorm.G[models.Employee](db).Find(ctx)
