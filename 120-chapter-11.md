@@ -15,9 +15,9 @@ Ruby on Rails has a number of rake tasks that are included out of the box. Runni
 ```ruby
 rails console
 
-> puts "id,first_name,last_name"
+> puts "guid,first_name,last_name"
 > Employee.all.each do |employee|
->   puts "#{employee.id},#{employee.first_name},#{employee.last_name}"
+>   puts "#{employee.guid},#{employee.first_name},#{employee.last_name}"
 > end
 ```
 
@@ -35,9 +35,11 @@ This will generate an `lib/tasks/employee_report.rake` file. We can then edit th
 namespace :employee_report do
   desc "prints a list of employees"
   task print: :environment do
+
+    # print the output in CSV format
     puts "id,guid,first_name,last_name"
     Employee.all.each do |employee|
-      puts "#{employee.id},#{employee.guid},#{employee.first_name},#{employee.last_name}"
+      puts "#{employee.guid},#{employee.first_name},#{employee.last_name}"
     end
   end
 end
@@ -52,8 +54,8 @@ rake employee_report:print
 We should see the following output.
 
 ```bash
-id,guid,first_name,last_name
-1,abcd,George,Jetson
+guid,first_name,last_name
+abcd,George,Jetson
 ```
 
 Each time we need to run the report, it will save us time because we no longer need to run `rails console`, wait for it to load, and then copy and paste into the console. One line either copy and pasted or typed into the terminal will run the code in the task.
@@ -134,20 +136,16 @@ func main() {
 
     ctx := context.Background()
 
-    // create the table
-    db.AutoMigrate(&models.Employee{})
-
-    // create a demo record
-    err = gorm.G[models.Employee](db).Create(ctx, &models.Employee{Guid: "abcd", FirstName: "George", LastName: "Jetson"})
-
+    // query our employee table
     records, err := gorm.G[models.Employee](db).Find(ctx)
     if err != nil {
       fmt.Printf("Could not connect to database %s\n", err)
     }
 
-    fmt.Println("id,guid,first_name,last_name")
+    // print the output in CSV format
+    fmt.Println("guid,first_name,last_name")
     for _, e := range records {
-        fmt.Printf("%d,%s,%s,%s\n", e.Id, e.Guid, e.FirstName, e.LastName)
+        fmt.Printf("%s,%s,%s\n", e.Guid, e.FirstName, e.LastName)
     }
 }
 ```
@@ -162,8 +160,8 @@ go run tasks/employee_report/print.go
 To produce this output
 
 ```
-id,guid,first_name,last_name
-1,abcd,George,Jetson
+guid,first_name,last_name
+abcd,George,Jetson
 ```
 
 ## References
