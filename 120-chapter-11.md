@@ -37,7 +37,7 @@ namespace :employee_report do
   task print: :environment do
 
     # print the output in CSV format
-    puts "id,guid,first_name,last_name"
+    puts "guid,first_name,last_name"
     Employee.all.each do |employee|
       puts "#{employee.guid},#{employee.first_name},#{employee.last_name}"
     end
