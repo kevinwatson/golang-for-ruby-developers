@@ -53,7 +53,7 @@ rake employee_report:print
 
 We should see the following output.
 
-```bash
+```csv
 guid,first_name,last_name
 abcd,George,Jetson
 ```
@@ -159,7 +159,7 @@ go run tasks/employee_report/print.go
 
 To produce this output
 
-```
+```csv
 guid,first_name,last_name
 abcd,George,Jetson
 ```
