@@ -51,7 +51,7 @@ After saving the `employee_report.rake` file, we can now run the code from the c
 rake employee_report:print
 ```
 
-We should see the following output.
+We should see the following output if there was 1 row for George Jetson in our `employees` table.
 
 ```csv
 guid,first_name,last_name
@@ -157,7 +157,7 @@ docker-compose run go
 go run tasks/employee_report/print.go
 ```
 
-To produce this output
+We should see ths output if there was 1 row for George Jetson in our `employees` table.
 
 ```csv
 guid,first_name,last_name
