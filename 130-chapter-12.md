@@ -257,9 +257,9 @@ func main() {
 
 	query.SetDefault(db)
 
-	u := query.Employee
-	_, _ = u.WithContext(context.Background()).
-		Where(u.Guid.Eq('abcd')).
+	e := query.Employee
+	_, _ = e.WithContext(context.Background()).
+		Where(e.Guid.Eq('abcd')).
 		Find()
 }
 ```
