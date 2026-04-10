@@ -112,7 +112,7 @@ type Employee struct {
 }
 ```
 
-Our employee print task (in the `tasks/employee_report` directory). Note that because we want to run this file on its own, we named the package `main` and the only function in the package is the `main` function.
+Our employee print task (in the `tasks/employee_report` directory). Note that because we want to run this file on its own, we named the package `main` and in this package there's a `main` function that will be called.
 
 ```golang
 // tasks/employee_report/print.go
