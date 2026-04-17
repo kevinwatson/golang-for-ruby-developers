@@ -12,9 +12,78 @@ Keeping your database schema in sync across all of your environments is key to s
 
 ### Ruby
 
+Rails provides an end-to-end solution with command-line options to manage your database schema. The `db` folder is where migration files are stored in a database-agnostic format.
+
+Creating a new table.
+
+```ruby
+bin/rails generate migration CreateBenefits name:string benefit_type:integer activated_at:datetime
+
+      invoke  active_record
+      create    db/migrate/20260417073020_create_benefits.rb
+```
+
+The auto-generated migration file.
+
+```ruby
+cat db/migrate/20260417073020_create_benefits.rb
+class CreateBenefits < ActiveRecord::Migration[8.1]
+  def change
+    create_table :benefits do |t|
+      t.string :name
+      t.integer :benefit_type
+      t.datetime :activated_at
+
+      t.timestamps
+    end
+  end
+end
+```
+
+Running the migration.
+
+```ruby
+bin/rails db:migrate
+
+== 20260417073020 CreateBenefits: migrating ===================================
+-- create_table(:benefits)
+   -> 0.0014s
+== 20260417073020 CreateBenefits: migrated (0.0014s) ==========================
+```
+
+The contents of the schema.rb file. This file can be used to create our test database and empty databases in other environments (with the `bin/rails db:setup RAILS_ENV=test` command) vs running the migration files individually.
+
+```ruby
+cat db/schema.rb
+
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
+#
+# It's strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema[8.1].define(version: 2026_04_17_073020) do
+  create_table "benefits", force: :cascade do |t|
+    t.datetime "activated_at"
+    t.integer "benefit_type"
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.datetime "updated_at", null: false
+  end
+end
+```
+
 ### Go
 
 ## References
+
+* https://guides.rubyonrails.org/command_line.html#migrations
 
 ## Wrap Up
 
