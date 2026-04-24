@@ -59,7 +59,7 @@ Here's the expected SQL data manipulation language (DML) that each language and 
 #### Model Definition
 
 ```ruby
-class User < ApplicationRecord
+class Employee < ApplicationRecord
 end
 ```
 
