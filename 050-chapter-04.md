@@ -37,7 +37,7 @@ I know most of my readers are software engineers and would prefer to look at som
 #### Table Definition
 
 ```sql
-CREATE TABLE users (
+CREATE TABLE employees (
   id serial,
   name text
 )
@@ -49,10 +49,10 @@ Here's the expected SQL data manipulation language (DML) that each language and 
 
 |Command|Statement|
 |---|---|
-|Insert|`INSERT INTO users (name) VALUES ('John')`|
-|Select|`SELECT * FROM users WHERE id = $1`|
-|Update|`UPDATE users SET name = 'Ronald' WHERE id = $1`|
-|Delete|`DELETE FROM users WHERE id = $1`|
+|Insert|`INSERT INTO employees (name) VALUES ('John')`|
+|Select|`SELECT * FROM employees WHERE id = $1`|
+|Update|`UPDATE employees SET name = 'Ronald' WHERE id = $1`|
+|Delete|`DELETE FROM employees WHERE id = $1`|
 
 ### Ruby
 
@@ -66,18 +66,18 @@ end
 #### ActiveRecord Query Interface
 
 ```ruby
-# create the user
-user = User.create(name: "John")
+# create the employee
+employee = Employee.create(name: "John")
 
-# find the user
-user = User.find_by(id: user.id)
+# find the employee
+employee = Employee.find_by(id: employee.id)
 
-# update the user
-user.name = "Ronald"
-user.save
+# update the employee
+employee.name = "Ronald"
+employee.save
 
-# delete the user
-user.destroy
+# delete the employee
+employee.destroy
 ```
 
 ### Go
@@ -93,8 +93,8 @@ import (
   "gorm.io/gorm"
 )
 
-// define the User
-type User struct {
+// define the employee
+type Employee struct {
   gorm.Model
   Id int
   Name string
@@ -104,23 +104,23 @@ func main() {
   db, err := [connect to the db]
   ctx := context.Background()
 
-  // define the user
-  user := User{Name: "John"})
+  // define the employee
+  employee := Employee{Name: "John"})
 
-  // create the user
+  // create the employee
   result := gorm.WithResult()
-  err = gorm.G[User](db, result).Create(ctx, &user)
-  id := user.Id
+  err = gorm.G[Employee](db, result).Create(ctx, &employee)
+  id := employee.Id
   err = result.Error
 
-  // find the user
-  user, err := gorm.G[User](db).Where("id = ?", id).First(ctx)
+  // find the employee
+  employee, err := gorm.G[Employee](db).Where("id = ?", id).First(ctx)
 
-  // update the user
-  err = gorm.G[User](db).Where("id = ?", id).Update(ctx, "name", "Ronald")
+  // update the employee
+  err = gorm.G[Employee](db).Where("id = ?", id).Update(ctx, "name", "Ronald")
 
-  // delete the user
-  err = gorm.G[User](db).Where("id = ?", id).Delete(ctx)
+  // delete the employee
+  err = gorm.G[Employee](db).Where("id = ?", id).Delete(ctx)
 }
 ```
 
