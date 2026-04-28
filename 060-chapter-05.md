@@ -12,6 +12,22 @@ For simplicty's sake, we'll compare JSON rendering between the two languages.
 
 ### Ruby on Rails
 
+Ruby on Rails provides an `api` mode which runs a leaner version of the framework. Here are a few of these API features:
+
+* Generators will skip helpers, views and assets
+* Middleware that is needed for rending browser assets (html, cookies) is not included
+* Familiar Rails features
+  * Routing
+  * Security
+  * Request parameter parsing
+  * Logging
+  * Caching
+  * Controllers
+  * Models
+  * Database schema version management
+
+
+
 ### Go
 
 ## Examples
@@ -19,6 +35,8 @@ For simplicty's sake, we'll compare JSON rendering between the two languages.
 ### Go
 
 ## References
+
+* https://guides.rubyonrails.org/api_app.html
 
 ## Wrap Up
 
