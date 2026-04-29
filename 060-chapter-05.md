@@ -26,9 +26,10 @@ Ruby on Rails provides an `api` mode which runs a leaner version of the framewor
   * Models
   * Database schema version management
 
-
+As we can see, Rails provides a mode that is leaner on the presentation layer but still includes full controller and model functionality. It's a quick way to spin up a JSON API as either a stand-alone application or as the backend of a website.
 
 ### Go
+
 
 ## Examples
 
