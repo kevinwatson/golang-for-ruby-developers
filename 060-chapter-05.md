@@ -14,7 +14,7 @@ For simplicty's sake, we'll compare JSON rendering between the two languages.
 
 Ruby on Rails provides an `api` mode which runs a leaner version of the framework. Here are a few of these API features:
 
-* Generators will skip helpers, views and assets
+* Generators will skip helpers, html views and assets
 * Middleware that is needed for rending browser assets (html, cookies) is not included
 * Familiar Rails features
   * Routing
@@ -30,13 +30,14 @@ As we can see, Rails provides a mode that is leaner on the presentation layer bu
 
 ### Go
 
+There are a variety of web frameworks written in Go that provide web functionality such as routing and security. Depending on your needs, you could pick from frameworks such as [Gin](https://gin-gonic.com/en/), [Fiber](https://github.com/gofiber/fiber), [Echo](https://echo.labstack.com), or [Gorilla](https://github.com/gorilla) (there are many others to choose from). In combination with the built in features of Go such as logging levels, you can add the appropriate framework to add the features you need.
 
 ## Examples
 
-### Go
-
 ## References
 
+* https://blog.logrocket.com/top-go-frameworks-2025
+* https://go.dev/doc/tutorial/web-service-gin
 * https://guides.rubyonrails.org/api_app.html
 
 ## Wrap Up
