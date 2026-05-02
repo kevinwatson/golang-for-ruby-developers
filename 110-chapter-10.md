@@ -1,6 +1,6 @@
 ### Chapter 10 - Logging
 
-> 
+![logging](images/logging.png)
 
 ## Introduction
 

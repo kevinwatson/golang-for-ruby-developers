@@ -1,6 +1,6 @@
 ### Chapter 4 - Models
 
-> 
+![models](images/models.png)
 
 ## Introduction
 

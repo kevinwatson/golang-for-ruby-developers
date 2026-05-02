@@ -1,6 +1,6 @@
 ### Chapter 14 - Performance Testing
 
-> 
+![performance testing](images/performance-testing.png)
 
 ## Introduction
 

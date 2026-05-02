@@ -1,6 +1,6 @@
 ### Chapter 3 - Models, Views, Controllers (MVC)
 
-> 
+![models, views, controllers](images/models-views-controllers.png)
 
 ## Introduction
 

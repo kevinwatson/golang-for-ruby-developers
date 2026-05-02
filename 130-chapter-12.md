@@ -1,6 +1,6 @@
 ### Chapter 12 - Code Generators
 
-> 
+![code generators](images/code-generators.png)
 
 ## Introduction
 

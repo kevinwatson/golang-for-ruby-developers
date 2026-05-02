@@ -1,6 +1,6 @@
 ### Chapter 6 - Controllers
 
-> 
+![controllers](images/controllers.png)
 
 ## Introduction
 

@@ -1,6 +1,6 @@
 ### Chapter 13 - Database Migrations
 
-> 
+![database migrations](images/database-migrations.png)
 
 ## Introduction
 

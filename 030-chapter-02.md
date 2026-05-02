@@ -1,6 +1,6 @@
 ### Chapter 2 - Ruby on Rails
 
-> 
+![ruby on rails](images/ruby-on-rails.png)
 
 ## Introduction
 

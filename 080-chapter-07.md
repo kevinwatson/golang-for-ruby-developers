@@ -1,6 +1,6 @@
 ### Chapter 7 - Console
 
-> 
+![console](images/console.png)
 
 ## Introduction
 

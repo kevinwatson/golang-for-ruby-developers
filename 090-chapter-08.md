@@ -1,6 +1,6 @@
 ### Chapter 8 - Debugging
 
-> 
+![debugging](images/debugging.png)
 
 ## Introduction
 

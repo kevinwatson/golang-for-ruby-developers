@@ -1,6 +1,6 @@
 ### Chapter 9 - Unit Testing
 
-> 
+![unit testing](unit-testing.png)
 
 ## Introduction
 

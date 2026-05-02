@@ -1,6 +1,6 @@
 ### Chapter 5 - Views
 
-> 
+![views](images/views.png)
 
 ## Introduction
 
