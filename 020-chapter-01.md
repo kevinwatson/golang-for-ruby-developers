@@ -1,6 +1,6 @@
 ### Chapter 1 - Go
 
-> 
+![Gopher](images/go-gopher.png)
 
 ## Introduction
 
