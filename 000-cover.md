@@ -1,6 +1,6 @@
 # Go for Ruby Developers
 
-## How to Migrate Your App and Skills From Ruby to Go
+## Beyond the Rails Stack: Embracing Simplicity, Speed, and Scale with Go
 
 ### Kevin Watson
 
