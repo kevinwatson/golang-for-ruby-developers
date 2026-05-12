@@ -39,6 +39,9 @@ fruits[1]
 fruits.delete("banana") # returns the deleted element
 => "banana"
 
+fruits
+=> ["apple", "blueberry"]
+
 fruits.size
 => 2
 ```
