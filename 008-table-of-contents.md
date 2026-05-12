@@ -73,17 +73,17 @@
    * Examples
    * References
    * Wrap Up
-* [Chapter 14 - Performance Testing](150-chapter-14.md)
-   * Introduction
-   * Examples
-   * References
-   * Wrap Up
-* [Chapter 15 - Language Comparison](160-chapter-15.md)
+* [Chapter 14 - Language Comparison](150-chapter-14.md)
    * Introduction
    * Data structures
    * Concurrency
    * Loops
    * Control Expressions
+   * References
+   * Wrap Up
+* [Chapter 15 - Performance Testing](160-chapter-15.md)
+   * Introduction
+   * Examples
    * References
    * Wrap Up
 

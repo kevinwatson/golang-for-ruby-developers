@@ -1,18 +1,13 @@
-### Chapter 15 - Language Comparison
+### Chapter 15 - Performance Testing
 
-![language comparison](images/language-comparison.png)
+![performance testing](images/performance-testing.png)
 
 ## Introduction
 
-## Data Structures
-
-## Concurrency
-
-## Loops
-
-## Control Expressions
+## Examples
 
 ## References
 
 ## Wrap Up
 
+[Next >>](160-chapter-15.md)
