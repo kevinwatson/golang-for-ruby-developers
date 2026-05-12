@@ -27,6 +27,9 @@ fruits = []
 fruits << "apple"
 fruits << "banana"
 fruits << "blueberry"
+fruits
+=> ["apple", "banana", "blueberry"]
+
 fruits.size
 => 3
 
