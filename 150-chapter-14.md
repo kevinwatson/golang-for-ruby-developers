@@ -18,9 +18,9 @@ Data structures are the way your app organizes and manages data. Each language p
 
 #### Arrays
 
-Arrays in Ruby are managed by the language, with features such as automatically resizing the array when items are added or deleted.
+Arrays in Ruby are managed by the language, with features such as automatically resizing the array when items are added or deleted. In the example below we'll collect various fruits, access a couple of them and delete one of them from the array.
 
-Usage:
+Example
 
 ```ruby
 fruits = []
@@ -49,9 +49,99 @@ fruits.size
 => 2
 ```
 
+##### Queue
+
+The Ruby array object has a few built in methods to make it easy to implement a first-in-first-out queue where items that were added can be removed in the same order they were added.
+
+Example
+
+```ruby
+queue = []
+=> []
+
+queue.unshift(:a)
+=> [:a]
+
+queue.unshift(:b)
+=> [:b, :a]
+
+queue.unshift(:c)
+=> [:c, :b, :a]
+
+queue.pop
+=> :a
+
+queue.pop
+=> :b
+
+queue.pop
+=> :c
+```
+
+##### Stack
+
+The Ruby array object has a few built in methods to make it easy to implement a first-in-last-out queue where items that were added can be removed in reverse order in which they were added.
+
+Example
+
+```ruby
+queue.pop
+=> nil
+
+stack = []
+=> []
+
+stack.push(:a)
+=> [:a]
+
+stack.push(:b)
+=> [:a, :b]
+
+stack.push(:c)
+=> [:a, :b, :c]
+
+stack.pop
+=> :c
+
+stack.pop
+=> :b
+
+stack.pop
+=> :a
+```
+
 #### Hash
 
-#### Stacks
+Hashes are key/value structures where the keys can be anything. In the example below we'll use a hash to track the number of each fruit that we have on hand.
+
+Example
+
+```ruby
+fruits = {}
+fruits[:apple] = 2
+fruits[:banana] = 1
+fruits[:blueberry] = 5
+fruits
+=> {:apple => 2, :banana => 1, :blueberry => 5}
+
+fruits.size
+=> 3
+
+fruits[:apple]
+=> 2
+
+fruits[:banana]
+=> 1
+
+fruits.delete(:banana) # returns the value of the key/value pair
+=> 1
+
+fruits
+=> {:apple=>2, :blueberry=>2}
+
+fruits.size
+=> 2
+```
 
 ## Concurrency
 
