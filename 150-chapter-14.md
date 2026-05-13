@@ -85,9 +85,6 @@ The Ruby array object has a few built in methods to make it easy to implement a 
 Example
 
 ```ruby
-queue.pop
-=> nil
-
 stack = []
 => []
 
