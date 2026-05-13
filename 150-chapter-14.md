@@ -51,7 +51,7 @@ fruits.size
 
 ##### Queue
 
-The Ruby array object has a few built in methods to make it easy to implement a first-in-first-out queue where items that were added can be removed in the same order they were added.
+The Ruby array object has a few built in methods to make it easy to implement a first-in-first-out queue where items are removed in the same order they were added.
 
 Example
 
@@ -80,7 +80,7 @@ queue.pop
 
 ##### Stack
 
-The Ruby array object has a few built in methods to make it easy to implement a first-in-last-out queue where items that were added can be removed in reverse order in which they were added.
+The Ruby array object has a few built in methods to make it easy to implement a first-in-last-out queue (aka a 'stack') where items are removed in reverse order in which they were added.
 
 Example
 
