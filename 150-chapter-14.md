@@ -12,15 +12,13 @@ In this chapter, we'll focus on the similarities and differences in the core or 
 
 ## Data Structures
 
-Data structures are the way your app organizes and manages data. Each language provides built in structures that can be implemented depending on the requirements of the app.
+Data structures are a way to organize and manage data. Each language provides built in structures that can be implemented depending on the requirements of the app.
 
-### Ruby
+### Arrays
 
-#### Arrays
+#### Ruby
 
 Arrays in Ruby are managed by the language, with features such as automatically resizing the array when items are added or deleted. In the example below we'll collect various fruits, access a couple of them and delete one of them from the array.
-
-Example
 
 ```ruby
 fruits = []
@@ -49,65 +47,57 @@ fruits.size
 => 2
 ```
 
-##### Queue
+#### Go
 
-The Ruby array object has a few built in methods to make it easy to implement a first-in-first-out queue where items are removed in the same order they were added.
+Go offers two structures, arrays and slices. Arrays have a fixed length, while slices offer flexibility such as automatic resizing but under the hood point to an underlying array. When a slice grows beyond it's underlying array's capacity, the runtime creates a larger array and copies the data to the new array.
 
-Example
+In this example we'll declare an array for our top 3 favorite fruits.
 
-```ruby
-queue = []
-=> []
+```golang
+var fruits [3]string
+fruits[0] = "apple"
+fruits[1] = "banana"
+fruits[2] = "blueberry"
+fmt.Println(fruits)
+// [apple banana blueberry]
 
-queue.unshift(:a)
-=> [:a]
+fmt.Println(len(fruits))
+// 3
 
-queue.unshift(:b)
-=> [:b, :a]
+// because array elements can't be removed or deleted,
+// we can only set an element back to its default or 'zero' value
+fruits[1] = ""
 
-queue.unshift(:c)
-=> [:c, :b, :a]
+fmt.Println(fruits)
+// [apple  blueberry]
 
-queue.pop
-=> :a
-
-queue.pop
-=> :b
-
-queue.pop
-=> :c
+fmt.Println(len(fruits))
+// 3
 ```
 
-##### Stack
+In this example we'll initialize a slice which will behave more like an array in Ruby.
 
-The Ruby array object has a few built in methods to make it easy to implement a first-in-last-out queue (aka a 'stack') where items are removed in reverse order in which they were added.
+```golang
+var fruits []string
+fruits = append(fruits, "apple", "banana", "blueberry")
+fmt.Println(fruits)
+// [apple banana blueberry]
 
-Example
+fmt.Println(len(fruits))
+// 3
 
-```ruby
-stack = []
-=> []
+// remove an element with the newer Delete function
+// requires importing the "slices" package
+fruits = slices.Delete(fruits, 1, 2)
 
-stack.push(:a)
-=> [:a]
+fmt.Println(fruits)
+// [apple blueberry]
 
-stack.push(:b)
-=> [:a, :b]
-
-stack.push(:c)
-=> [:a, :b, :c]
-
-stack.pop
-=> :c
-
-stack.pop
-=> :b
-
-stack.pop
-=> :a
+fmt.Println(len(fruits))
+// 2
 ```
 
-#### Hash
+### Hash
 
 Hashes are key/value structures where the keys can be anything. In the example below we'll use a hash to track the number of each fruit that we have on hand.
 
