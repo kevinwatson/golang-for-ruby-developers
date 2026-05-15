@@ -99,9 +99,11 @@ fmt.Println(len(fruits))
 
 ### Hash
 
-Hashes are key/value structures where the keys can be anything. In the example below we'll use a hash to track the number of each fruit that we have on hand.
+Hashes in Ruby are key/value structures where the keys can be anything. The equivalent in Go is called a map.
 
-Example
+#### Ruby
+
+In the example below we'll use a hash to track the number of each fruit that we have on hand.
 
 ```ruby
 fruits = {}
@@ -130,9 +132,76 @@ fruits.size
 => 2
 ```
 
-## Concurrency
+#### Go
+
+In this example we'll create a map to track the same counts of fruit.
+
+```golang
+fruits := make(map[string]int)
+fruits["apple"] = 2
+fruits["banana"] = 1
+fruits["blueberry"] = 5
+fmt.Println(fruits)
+// map[apple:2 banana:1 blueberry:5]
+
+fmt.Println(len(fruits))
+// 3
+
+fmt.Println(fruits["apple"])
+// 2
+
+fmt.Println(fruits["banana"])
+// 1
+
+delete(fruits, "banana")
+
+fmt.Println(fruits)
+// map[apple:2 blueberry:5]
+
+fmt.Println(len(fruits))
+// 2
+```
 
 ## Loops
+
+Loop constructs allow you to iterate through a collection of items, such as an array or hash/map.
+
+### Ruby
+
+Ruby has a number of ways to loop through collections, including `while`, `until`, `for`, `loop do...end` and iterators like `each`, `times` and `upto/downto`. We'll look at the commonly-used `each` iterator on an array.
+
+```ruby
+fruits = []
+fruits << "apple"
+fruits << "banana"
+fruits << "blueberry"
+
+fruits.each do |fruit|
+  puts fruit
+end
+
+apple
+banana
+blueberry
+```
+
+### Go
+
+Go, on the other hand, only has a single loop construct: `for`. Depending on the statements used that follow the `for` keyword (initialization, condition, post-statement), this single construct can behave like several different looping constructs from other languages.
+
+```golang
+var fruits [3]string
+fruits[0] = "apple"
+fruits[1] = "banana"
+fruits[2] = "blueberry"
+
+for index, fruit := range fruits {
+  fmt.Println(index, fruit)
+}
+// 0 apple
+// 1 banana
+// 2 blueberry
+```
 
 ## Control Expressions
 
