@@ -238,7 +238,7 @@ end
 
 In Go, there are only `if`, `if else` and `if else if` conditional statements.
 
-```
+```golang
 import (
   "fmt"
   "time"
