@@ -206,8 +206,62 @@ for index, fruit := range fruits {
 // 2 blueberry
 ```
 
-## Control Expressions
+## Conditional Statements
 
+Conditional statements check whether logic evaluates to true or false.
+
+### Ruby
+
+In Ruby, there are `falsy` and `truthy` statements. The number of `falsy` statements is very small, including only `nil` and `false`. Every other value is considered `true`, including `0` and empty strings `""`.
+
+if, elseif, else
+
+```ruby
+require 'date'
+
+todays_date = Date.today
+
+if todays_date.saturday? || todays_date.sunday?
+  puts "It's the weekend"
+elsif todays_date.wday < 3
+  puts "It's the start of the work week"
+elsif todays_date.wednesday?
+  puts "It's midweek"
+else
+  puts "It's the end of the work week"
+end
+
+# It's the start of the work week
+```
+
+### Go
+
+In Go, there are only `if`, `if else` and `if else if` conditional statements.
+
+```
+import (
+  "fmt"
+  "time"
+)
+
+func main() {
+  now := time.Now()
+  weekday := int(now.Weekday())
+
+  if weekday == 0 || weekday == 7 {
+    fmt.Println("It's the weekend")
+  } else if weekday < 3 {
+    fmt.Println("It's the start of the work week")
+  } else if weekday == 3 {
+    fmt.Println("It's midweek")
+  } else {
+    fmt.Println("It's the end of the week")
+  }
+}
+
+// It's the start of the work week
+```
+ 
 ## Dependency Management
 
 ## References
