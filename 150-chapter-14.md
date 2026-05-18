@@ -176,13 +176,16 @@ fruits << "apple"
 fruits << "banana"
 fruits << "blueberry"
 
-fruits.each do |fruit|
-  puts fruit
+fruits.each_with_index do |fruit, index|
+  puts index, fruit
 end
 
-apple
-banana
-blueberry
+# 0
+# apple
+# 1
+# banana
+# 2
+# blueberry
 ```
 
 ### Go
