@@ -264,8 +264,19 @@ func main() {
  
 ## Dependency Management
 
+Dependent libraries or 'dependencies' are a way to quickly add features to our app. For example, Ruby on Rails is a collection of libraries (aka 'gems') that can be added either individually (for example, if you only need the features provided by ActiveRecord, you can include just that library and use its features) or as a collection if you want to use all of the framework's features.
+
+### Ruby
+
+Ruby's libraries are called 'gems' which is a clever term based on the name of the Ruby language. Gems, or gemstones, are defined as a precious piece of mineral crystal, organic matter or rock that has been cut and polished. There might be gems embedded in the rings on your hands or other jewelry. In Ruby terminology a 'gem' is a valuable and polished add-on that enhances your core app.
+
+Ruby includes a tool named Bundler. Bundler uses two files to manage an app's dependencies or gems. These files are `Gemfile` and `Gemfile.lock`. The `Gemfile` defines which top level libraries the app depends on in order to run correctly. The `Gemfile.lock` file is maintained by the Bundler app and defines the specific versions and dependency tree and is read when using `bundle exec` to start the app.
+
+
+
 ## References
 
+* https://bundler.io
 * https://go.dev/talks/2012/splash.article
 * https://www.rubyguides.com/2019/04/ruby-data-structures
 * https://objectcomputing.com/resources/publications/sett/november-2018-way-to-go-part-1
