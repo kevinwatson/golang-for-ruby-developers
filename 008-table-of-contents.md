@@ -86,5 +86,10 @@
    * Examples
    * References
    * Wrap Up
+* [Chapter 16 - Dependency Management](170-chapter-16.md)
+   * Introduction
+   * Examples
+   * References
+   * Wrap Up
 
 [Next >>](010-chapter-00.md)
