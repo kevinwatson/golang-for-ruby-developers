@@ -4,6 +4,8 @@
 
 Dependent libraries or 'dependencies' are a way to quickly add features to our app. For example, Ruby on Rails is a collection of libraries (aka 'gems') that can be added either individually (for example, if we only need the features provided by ActiveRecord, we can include just that library and use its features) or as a collection if you want to use all of the framework's features.
 
+As libraries are written and modified, they can be versioned. Over time, as bugs are fixed and features are added, incrementing the version allows consumers of the library to identify and target a specific version for their app and upgrade when they're ready. Without version management, our app would behave unpredictably each time it was built and deployed. One common way to manage version an app is with Semantic versioning (https://semver.org). This versioning scheme uses the format X.Y.Z, where each is an incrementing number (e.g. 1.4.6) and X is the major version, Y is the minor version and Z is the patch version. Bug fixes that don't affect the public API of the library increment the patch number, backward compatible changes to the API increment the minor version number, and backward incompatible changes increment the major version number. With this versioning scheme, using the version number alone, the code maintainer can understand the risk of upgrading a dependency without reviewing all of the changes. For example, if we're currently using library A version 1.5.12 and 1.5.13 is available, we can be fairly confident that consuming the next version won't break our app. As the saying goes, we should always 'trust but verify' by running our unit and other tests after upgrading any dependencies.
+
 ## Examples
 
 ### Ruby
@@ -17,6 +19,7 @@ Ruby includes a tool named Bundler. Bundler uses two files to manage an app's de
 ## References
 
 * https://bundler.io
+* https://semver.org
 
 ## Wrap Up
 
