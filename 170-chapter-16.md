@@ -14,6 +14,31 @@ Ruby's libraries are called 'gems' which is a clever term based on the name of t
 
 Ruby includes a tool named Bundler. Bundler uses two files to manage an app's dependencies or gems. These files are `Gemfile` and `Gemfile.lock`. The `Gemfile` defines which top level libraries the app depends on in order to run correctly. The `Gemfile.lock` file is maintained by the Bundler app and defines the specific versions and dependency tree. Running `bundle update` will download new versions of gems and keep old versions on your system. Prefixing `rails server` with `bundle exec` (e.g. `bundle exec rails server`) when starting a Ruby on Rails app will read the Gemfile and Gemfile.lock files and run the app with only the versions defined in those files.
 
+Let's spin up a new Rails app and add the `amazing_print` gem which provides a better console experience.
+
+```ruby
+rails c
+> JSON.parse('{"a": 1, "b": 2, "c": 3}')
+=> {"a" => 1, "b" => 2, "c" => 3}
+> exit
+
+bundle add amazing_print
+Fetching gem metadata from https://rubygems.org/.........
+Resolving dependencies...
+Fetching gem metadata from https://rubygems.org/.........
+...
+Fetching amazing_print 2.0.0
+Installing amazing_print 2.0.0
+
+rails c
+> ap JSON.parse('{"a": 1, "b": 2, "c": 3}')
+{
+    "a" => 1,
+    "b" => 2,
+    "c" => 3
+}
+```
+
 ### Go
 
 ## References
