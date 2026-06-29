@@ -12,16 +12,11 @@ As libraries are written and modified, they can be versioned. Over time, as bugs
 
 Ruby's libraries are called 'gems' which is a clever term based on the name of the Ruby language. Gems, or gemstones, are defined as a precious piece of mineral crystal, organic matter or rock that has been cut and polished. There might be gems embedded in the rings on your hands or other jewelry. In Ruby terminology a 'gem' is a valuable and polished add-on that enhances our core app.
 
-Ruby includes a tool named Bundler. Bundler uses two files to manage an app's dependencies or gems. These files are `Gemfile` and `Gemfile.lock`. The `Gemfile` defines which top level libraries the app depends on in order to run correctly. The `Gemfile.lock` file is maintained by the Bundler app and defines the specific versions and dependency tree. Running `bundle update` will download new versions of gems and keep old versions on your system. Prefixing `rails server` with `bundle exec` (e.g. `bundle exec rails server`) when starting a Ruby on Rails app will read the Gemfile and Gemfile.lock files and run the app with only the versions defined in those files.
+Ruby includes a tool named Bundler. Bundler uses two files to manage an app's dependencies or gems. These files are `Gemfile` and `Gemfile.lock`. The `Gemfile` defines which top level libraries the app depends on in order to run correctly. The `Gemfile.lock` file is maintained by the Bundler app and defines the specific versions and dependency tree. Running `bundle install` will scan the `Gemfile` file and download and install any missing libraries on your system. Prefixing `rails server` with `bundle exec` (e.g. `bundle exec rails server`) when starting a Ruby on Rails app will read the Gemfile and Gemfile.lock files and run the app with only the versions defined in those files.
 
-Let's spin up a new Rails app and add the `amazing_print` gem which provides a better console experience.
+Let's spin up a new Rails app and add the `amazing_print` gem which provides a better console experience. We'll use the `bundle add` command which will automatically add the gem to the `Gemfile`, run `bundle install` to download and install the new gem and then add the new gem and its version to the `Gemfile.lock` file.
 
 ```ruby
-rails c
-> JSON.parse('{"a": 1, "b": 2, "c": 3}')
-=> {"a" => 1, "b" => 2, "c" => 3}
-> exit
-
 bundle add amazing_print
 Fetching gem metadata from https://rubygems.org/.........
 Resolving dependencies...
@@ -30,7 +25,8 @@ Fetching gem metadata from https://rubygems.org/.........
 Fetching amazing_print 2.0.0
 Installing amazing_print 2.0.0
 
-rails c
+# test the newly added code
+rails console
 > ap JSON.parse('{"a": 1, "b": 2, "c": 3}')
 {
     "a" => 1,
