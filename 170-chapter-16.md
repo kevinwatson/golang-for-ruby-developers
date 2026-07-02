@@ -43,16 +43,29 @@ The `go.sum` file is used to manage the checksums of the modules we depend on. T
 
 Let's run through a couple of examples.
 
-Managing dependencies using `go get <package>`.
+#### Managing dependencies using go get <package>
+
+First, we'll start a fresh container on the latest version of Go.
 
 ```bash
 docker run --rm -it golang:latest sh
+```
 
+Now, let's look through the existing directories. We can see that they're empty.
+
+```bash
 # ls
 bin  src
 
 # ls src
 
+# ls bin
+
+```
+
+Next, we'll create a new module with the `go mod init` command. We can see that it created the `go.mod` file and the `pkg` directory.
+
+```bash
 # go mod init dependencies/main
 go: creating new go.mod: module dependencies/main
 go: to add module requirements and sums:
@@ -65,7 +78,11 @@ bin  go.mod  pkg  src
 module dependencies/main
 
 go 1.26.4
+```
 
+Next, we'll pull a package and its dependencies. We'll inspect the modified `go.mod` file and the newly created `go.sum` file.
+
+```bash
 # go get gorm.io/gorm
 go: warning: ignoring go.mod in $GOPATH /go
 go: downloading gorm.io/gorm v1.31.2
@@ -100,7 +117,22 @@ gorm.io/gorm v1.31.2 h1:3o8FXNo9v9S858gil+3LlZA1LkCOzgb4g5BL64FgaCo=
 gorm.io/gorm v1.31.2/go.mod h1:XyQVbO2k6YkOis7C2437jSit3SsDK72s7n7rsSHd+Gs=
 ```
 
-Managing dependencies by adding imports to the project and using `go get ./...`
+Now let's check the folders where the code was downloaded. Notice that the folder names include the verison number.
+
+```bash
+# ls pkg/mod/github.com/jinzhu
+inflection@v1.0.0  now@v1.1.5
+
+# ls pkg/mod/github.com/jinzhu/inflection@v1.0.0
+LICENSE  README.md  go.mod  inflections.go  inflections_test.go  wercker.yml
+
+# ls pkg/mod/github.com/jinzhu/now@v1.1.5
+Guardfile  License  README.md  go.mod  main.go	now.go	now_test.go  time.go
+```
+
+#### Managing dependencies by adding imports
+
+Another way to manage dependencies is by adding imports to the project files and running the command `go get ./...` to retrieve the dependencies.
 
 ```bash
 
