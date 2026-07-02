@@ -43,7 +43,7 @@ The `go.sum` file is used to manage the checksums of the modules we depend on. T
 
 Let's run through a couple of examples.
 
-#### Managing dependencies using go get <package>
+#### Managing Dependencies Using go get package
 
 First, we'll start a fresh container on the latest version of Go.
 
@@ -130,7 +130,7 @@ LICENSE  README.md  go.mod  inflections.go  inflections_test.go  wercker.yml
 Guardfile  License  README.md  go.mod  main.go	now.go	now_test.go  time.go
 ```
 
-#### Managing dependencies by adding imports
+#### Managing Dependencies Using Imports
 
 Another way to manage dependencies is by adding imports to the project files and running the command `go get ./...` to retrieve the dependencies.
 
