@@ -87,7 +87,7 @@ gem "amazing_print", "~> 2.0"
 gem "json", "~> 2.20"
 ```
 
-Inspect the Gemfile.lock
+Inspect the Gemfile.lock file
 
 ```ruby
 # cat Gemfile.lock
