@@ -14,26 +14,122 @@ Ruby's libraries are called 'gems' which is a clever term based on the name of t
 
 Ruby includes a tool named Bundler. Bundler uses two files to manage an app's dependencies or gems. These files are `Gemfile` and `Gemfile.lock`. The `Gemfile` defines which top level libraries the app depends on in order to run correctly. The `Gemfile.lock` file is maintained by the Bundler app and defines the specific versions and dependency tree. Running `bundle install` will scan the `Gemfile` file and download and install any missing libraries on your system. Prefixing `rails server` with `bundle exec` (e.g. `bundle exec rails server`) when starting a Ruby on Rails app will read the Gemfile and Gemfile.lock files and run the app with only the versions defined in those files.
 
-Let's spin up a new Rails app and add the `amazing_print` gem which provides a better console experience. We'll use the `bundle add` command which will automatically add the gem to the `Gemfile`, run `bundle install` to download and install the new gem and then add the new gem and its version to the `Gemfile.lock` file.
+Let's spin up a new container to create a fresh environment where we can experiment with the bundler gem. We'll create a new Gemfile and add a couple of gems via the command line so we can run some code in the console.
 
-```ruby
-bundle add amazing_print
-Fetching gem metadata from https://rubygems.org/.........
+```bash
+docker run --rm -it ruby:latest bash
+```
+
+Install the bundler gem
+
+```bash
+# gem install bundler
+Fetching bundler-4.0.15.gem
+Successfully installed bundler-4.0.15
+1 gem installed
+```
+
+Create a new folder and add a Gemfile with the `bundle init` command
+
+```bash
+# mkdir opt/bundle_test
+
+# cd opt/bundle_test/
+# bundle init
+Writing new Gemfile to /opt/bundle_test/Gemfile
+```
+
+Inspect the file
+
+```bash
+# ls
+Gemfile
+
+# cat Gemfile
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+```
+
+Add two gems, one to pretty print objects and one to manage JSON objects and show where they're installed
+
+```bash
+# bundle add amazing_print
+Fetching gem metadata from https://rubygems.org/.
 Resolving dependencies...
-Fetching gem metadata from https://rubygems.org/.........
-...
+Fetching gem metadata from https://rubygems.org/.
 Fetching amazing_print 2.0.0
 Installing amazing_print 2.0.0
 
-# test the newly added code
-rails console
-> ap JSON.parse('{"a": 1, "b": 2, "c": 3}')
+# bundle show amazing_print
+/usr/local/bundle/gems/amazing_print-2.0.0
+
+# bundle add json
+Fetching gem metadata from https://rubygems.org/.
+Resolving dependencies...
+Fetching gem metadata from https://rubygems.org/.
+Fetching json 2.20.0
+Installing json 2.20.0 with native extensions
+
+# bundle show json
+/usr/local/bundle/gems/json-2.20.0
+```
+
+Inspect the modified Gemfile
+
+```gemfile
+# cat Gemfile
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# gem "rails"
+
+gem "amazing_print", "~> 2.0"
+
+gem "json", "~> 2.20"
+```
+
+Inspect the Gemfile.lock
+
+```gemfile
+# cat Gemfile.lock
+GEM
+  remote: https://rubygems.org/
+  specs:
+    amazing_print (2.0.0)
+    json (2.20.0)
+
+PLATFORMS
+  aarch64-linux
+  ruby
+
+DEPENDENCIES
+  amazing_print (~> 2.0)
+  json (~> 2.20)
+
+CHECKSUMS
+  amazing_print (2.0.0) sha256=2e36aba46ac78d37ed27ca0e2056afe3583183bb5c64f157c246b267355e5d6a
+  bundler (4.0.15) sha256=a4ceb882fe94a0e0ac63cd0813932bbfd631a14e5ac0b7975189b19a4d28d9e7
+  json (2.20.0) sha256=9362bc6e55a952b056abf9167cf053358181c904cb70cd6eee0808ea830fc32b
+
+BUNDLED WITH
+  4.0.15
+```
+
+Start a console in the context of the current bundle
+
+```ruby
+# bundle console
+irb(main):001> ap JSON.parse('{"a": 1, "b": 2, "c": 3}')
 {
     "a" => 1,
     "b" => 2,
     "c" => 3
 }
 ```
+
+With a few bundler commands, we're able to add new gems and lock them to specific versions which ensures that our apps behaves the same wherever it's running.
 
 ### Go
 
