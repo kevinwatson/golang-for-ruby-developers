@@ -42,9 +42,6 @@ Writing new Gemfile to /opt/bundle_test/Gemfile
 Inspect the file
 
 ```bash
-# ls
-Gemfile
-
 # cat Gemfile
 # frozen_string_literal: true
 
@@ -77,7 +74,7 @@ Installing json 2.20.0 with native extensions
 
 Inspect the modified Gemfile
 
-```gemfile
+```ruby
 # cat Gemfile
 # frozen_string_literal: true
 
@@ -92,7 +89,7 @@ gem "json", "~> 2.20"
 
 Inspect the Gemfile.lock
 
-```gemfile
+```ruby
 # cat Gemfile.lock
 GEM
   remote: https://rubygems.org/
