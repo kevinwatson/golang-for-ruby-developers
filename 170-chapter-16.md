@@ -14,7 +14,7 @@ Ruby's libraries are called 'gems' which is a clever term based on the name of t
 
 Ruby includes a tool named Bundler. Bundler uses two files to manage an app's dependencies or gems. These files are `Gemfile` and `Gemfile.lock`. The `Gemfile` defines which top level libraries the app depends on in order to run correctly. The `Gemfile.lock` file is maintained by the Bundler app and defines the specific versions and dependency tree. Running `bundle install` will scan the `Gemfile` file and download and install any missing libraries on your system. Prefixing `rails server` with `bundle exec` (e.g. `bundle exec rails server`) when starting a Ruby on Rails app will read the Gemfile and Gemfile.lock files and run the app with only the versions defined in those files.
 
-Let's spin up a new container to create a fresh environment where we can experiment with the bundler gem. We'll create a new Gemfile and add a couple of gems via the command line so we can run some code in the console.
+Let's spin up a new container to create a fresh environment where we can experiment with the bundler gem. We'll run a few commands to create a new Gemfile, add a couple of gems and then run some code in the console.
 
 ```bash
 docker run --rm -it ruby:latest bash
