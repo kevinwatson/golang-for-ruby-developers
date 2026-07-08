@@ -1,5 +1,7 @@
 ### Chapter 16 - Dependency Management
 
+![logging](images/dependencies.png)
+
 ## Introduction
 
 Dependent libraries or 'dependencies' are a way to quickly add features to our app. For example, Ruby on Rails is a collection of libraries (aka 'gems') that can be added either individually (for example, if we only need the features provided by ActiveRecord, we can include just that library and use its features) or as a collection if you want to use all of the framework's features.
