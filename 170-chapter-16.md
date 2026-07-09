@@ -280,7 +280,7 @@ bin  src
 
 Initialize the module
 
-```bash
+```golang
 # go mod init example/main
 go: creating new go.mod: module example/main
 go: to add module requirements and sums:
@@ -301,9 +301,9 @@ Show the contents of the new go.mod file
 module example/main
 ```
 
-Use `go get .` to retrieve modules from the packages
+Use `go get` to retrieve modules from the packages
 
-```bash
+```golang
 go 1.26.4
 # go get ./...
 go: warning: ignoring go.mod in $GOPATH /go
@@ -328,27 +328,9 @@ List the files again. Now there's a go.sum file.
 bin  go.mod  go.sum  pkg  src
 ```
 
-Show the contents of the go.sum file
+Inspect the go.mod file. We can see that it now has references to the required dependencies.
 
-```bash
-# cat go.sum
-github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD/E=
-github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
-github.com/jinzhu/now v1.1.5 h1:/o9tlHleP7gOFmsnYNz3RGnqzefHA47wQpKrrdTIwXQ=
-github.com/jinzhu/now v1.1.5/go.mod h1:d3SSVoowX0Lcu0IBviAWJpolVfI5UJVZZ7cO71lE/z8=
-github.com/mattn/go-sqlite3 v1.14.22 h1:2gZY6PC6kBnID23Tichd1K+Z0oS6nE/XwU+Vz/5o4kU=
-github.com/mattn/go-sqlite3 v1.14.22/go.mod h1:Uh1q+B4BYcTPb+yiD3kU8Ct7aC0hY9fxUwlHK0RXw+Y=
-golang.org/x/text v0.20.0 h1:gK/Kv2otX8gz+wn7Rmb3vT96ZwuoxnQlY+HlJVj7Qug=
-golang.org/x/text v0.20.0/go.mod h1:D4IsuqiFMhST5bX19pQ9ikHC2GsaKyk/oF+pn3ducp4=
-gorm.io/driver/sqlite v1.6.0 h1:WHRRrIiulaPiPFmDcod6prc4l2VGVWHz80KspNsxSfQ=
-gorm.io/driver/sqlite v1.6.0/go.mod h1:AO9V1qIQddBESngQUKWL9yoH93HIeA1X6V633rBwyT8=
-gorm.io/gorm v1.31.2 h1:3o8FXNo9v9S858gil+3LlZA1LkCOzgb4g5BL64FgaCo=
-gorm.io/gorm v1.31.2/go.mod h1:XyQVbO2k6YkOis7C2437jSit3SsDK72s7n7rsSHd+Gs=
-```
-
-Inspect the go.mod file
-
-```bash
+```golang
 # cat go.mod
 module example/main
 
@@ -367,6 +349,23 @@ require (
 )
 ```
 
+Show the contents of the go.sum file. We can see that it contains a list of dependencies with a hash of their go.mod files and a hash of the contents of the code that was downloaded. These hashes are used to verify dependent code each time that `go get` is run.
+
+```golang
+# cat go.sum
+github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD/E=
+github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
+github.com/jinzhu/now v1.1.5 h1:/o9tlHleP7gOFmsnYNz3RGnqzefHA47wQpKrrdTIwXQ=
+github.com/jinzhu/now v1.1.5/go.mod h1:d3SSVoowX0Lcu0IBviAWJpolVfI5UJVZZ7cO71lE/z8=
+github.com/mattn/go-sqlite3 v1.14.22 h1:2gZY6PC6kBnID23Tichd1K+Z0oS6nE/XwU+Vz/5o4kU=
+github.com/mattn/go-sqlite3 v1.14.22/go.mod h1:Uh1q+B4BYcTPb+yiD3kU8Ct7aC0hY9fxUwlHK0RXw+Y=
+golang.org/x/text v0.20.0 h1:gK/Kv2otX8gz+wn7Rmb3vT96ZwuoxnQlY+HlJVj7Qug=
+golang.org/x/text v0.20.0/go.mod h1:D4IsuqiFMhST5bX19pQ9ikHC2GsaKyk/oF+pn3ducp4=
+gorm.io/driver/sqlite v1.6.0 h1:WHRRrIiulaPiPFmDcod6prc4l2VGVWHz80KspNsxSfQ=
+gorm.io/driver/sqlite v1.6.0/go.mod h1:AO9V1qIQddBESngQUKWL9yoH93HIeA1X6V633rBwyT8=
+gorm.io/gorm v1.31.2 h1:3o8FXNo9v9S858gil+3LlZA1LkCOzgb4g5BL64FgaCo=
+gorm.io/gorm v1.31.2/go.mod h1:XyQVbO2k6YkOis7C2437jSit3SsDK72s7n7rsSHd+Gs=
+```
 
 ## References
 
@@ -376,3 +375,8 @@ require (
 
 ## Wrap Up
 
+As we can see, dependency management is an important part of software development. Luckily, Ruby and Go have mature tooling available to make dependency management easy.
+
+Ruby's `bundler` uses two files, `Gemfile` and `Gemfile.lock`. The first file is used to define the top-level dependencies while the second file is used to track the entire dependency trees with their specific versions.
+
+Go's `mod` and `get` tools generate `go.mod` and `go.sum` files. The first file is used to define the top-level dependencies and the second file is used to manage the integrity of the dependencies for the defined version.
