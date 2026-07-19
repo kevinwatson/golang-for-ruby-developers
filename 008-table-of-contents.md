@@ -91,5 +91,6 @@
    * Examples
    * References
    * Wrap Up
+* [Chapter 17 - Summary](180-chapter-17.md)
 
 [Next >>](010-chapter-00.md)
